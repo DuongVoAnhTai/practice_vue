@@ -14,7 +14,12 @@ const router = createRouter({
       path: '/pagination',
       name: 'pagination',
       component: Pagination
-    }
+    },
+    {
+      path: '/note-app',
+      name: 'note-app',
+      component: () => import('@/views/NoteAppView.vue')
+    },
   ],
 })
 

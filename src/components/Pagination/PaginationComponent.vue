@@ -41,13 +41,13 @@ console.log(currentPage.value)
 </script>
 
 <template>
-  <div class="wrapper">
-    <header class="header">
+  <div :class="$style.wrapper">
+    <header :class="$style.header">
       <h1>Pagination in HTML CSS & JavaScript</h1>
     </header>
 
-    <div class="container">
-      <div class="card" v-for="(item, index) in paginationData" :key="index">
+    <div :class="$style.container">
+      <div :class="$style.card" v-for="(item, index) in paginationData" :key="index">
         <img :src="item.img" alt="Mern" />
         <h3>{{ item.title }}</h3>
         <p>{{ item.content }}</p>
@@ -55,25 +55,24 @@ console.log(currentPage.value)
     </div>
   </div>
 
-  <footer class="footer">
-    <div class="btn-group">
-      <button class="btn pre-btn" @click="handlePreBtn">Previous</button>
+  <footer :class="$style.footer">
+    <div :class="$style['btn-group']">
+      <button :class="[$style.btn, $style['pre-btn']]" @click="handlePreBtn">Previous</button>
       <button
-        class="btn pagination-btn"
-        :class="isActive(index + 1)"
+        :class="[$style.btn, $style['pagination-btn'], isActive(index + 1)]"
         v-for="(_, index) in totalPages"
         :key="index"
         @click="handlePagination(index + 1)"
       >
         {{ index + 1 }}
       </button>
-      <button class="btn next-btn" @click="handleNextBtn">Next</button>
+      <button :class="[$style.btn, $style['next-btn']]" @click="handleNextBtn">Next</button>
     </div>
     <p>Page {{ currentPage }} of {{ totalPages }}</p>
   </footer>
 </template>
 
-<style>
+<style module>
 .wrapper {
   text-align: center;
   margin-top: 50px;
