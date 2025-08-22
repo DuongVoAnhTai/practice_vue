@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
+import NoteForm from './NoteForm.vue'
 
 const container = ref(false)
 const title = ref('')
@@ -46,6 +47,14 @@ const handleNoteClick = (index) => {
   title.value = titleList[index].title
   content.value = titleList[index].content
 }
+
+const updateTitle = (value) => {
+  title.value = value
+}
+
+const updateContent = (value) => {
+  content.value = value
+}
 </script>
 
 <template>
@@ -55,7 +64,7 @@ const handleNoteClick = (index) => {
       <h1>Note Taking App</h1>
     </header>
 
-    <div class="container" v-if="container">
+    <!-- <div class="container" v-if="container">
       <div class="btn-group">
         <button class="save-btn" @click="handleSaveBtn">Save</button>
         <button class="delete-btn" @click="handleDeleteBtn">Delete</button>
@@ -69,7 +78,17 @@ const handleNoteClick = (index) => {
         placeholder="Content"
         v-model.lazy="content"
       ></textarea>
-    </div>
+    </div> -->
+
+    <NoteForm
+      v-if="container"
+      :title="title"
+      :content="content"
+      :onSave="handleSaveBtn"
+      :onDelete="handleDeleteBtn"
+      :onUpdateTitle="updateTitle"
+      :onUpdateContent="updateContent"
+    />
 
     <ul v-else class="note-list">
       <li v-for="(value, index) in titleList" :key="index" @click="handleNoteClick(index)">
@@ -103,7 +122,7 @@ const handleNoteClick = (index) => {
   }
 }
 
-.container {
+/* .container {
   width: 100%;
   min-height: 500px;
   margin: 20px 30px;
@@ -151,7 +170,7 @@ const handleNoteClick = (index) => {
   padding: 30px;
   background-color: #f5f5db;
   font-size: 1.6rem;
-}
+} */
 
 .note-list {
   width: 150px;
