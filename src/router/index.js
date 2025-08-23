@@ -20,6 +20,11 @@ const router = createRouter({
       name: 'note-app',
       component: () => import('@/views/NoteAppView.vue')
     },
+    {
+      path: '/search-git',
+      name: 'search-git',
+      component: () => import('@/views/SearchGitView.vue')
+    },
   ],
 })
 
