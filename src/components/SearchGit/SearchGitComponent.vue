@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import * as searchService from '@/services/searchServices'
 
 const isLoading = ref(false)
 const inputSearch = ref('')
@@ -14,11 +15,10 @@ const fetchApi = async () => {
   user.value = null
 
   try {
-    const res = await fetch(import.meta.env.VITE_APP_USER_API + inputSearch.value)
-
-    const data = await res.json()
-    user.value = data
-    console.log(data);
+    const res = await searchService.search(inputSearch.value)
+    
+    user.value = res
+    console.log(user.value);
     
   } catch (err) {
     console.log(err)
